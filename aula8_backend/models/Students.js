@@ -1,12 +1,19 @@
-const { Sequelize, DataTypes } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize');
+const db = require('../database/conn');
 
-const db = require('../database/conn')
+const User = require('./User');
 
-const User = db.define('User', {
+// const Students = require('./Students');
+const Students = db.define('Students', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+  },
+  cpf: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
   },
   name: {
     type: DataTypes.STRING,
@@ -34,4 +41,7 @@ const User = db.define('User', {
   },
 })
 
-module.exports = User
+Students.belongsTo(User);
+Students.belongsTo(TravelPackage);
+
+module.exports = Students;

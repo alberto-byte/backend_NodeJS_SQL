@@ -1,25 +1,21 @@
-const {Sequelize} = require('sequelize')
+const {Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize('mdbtest', 'root', 'admin2', {
+const sequelize = new Sequelize('mdbtest', 'root', 'root', {
     host: 'localhost',
-    port: 3308,
+    port: 3306,
     dialect: 'mariadb',
     define: {        
         freezeTableName: true
     }
-   
-  })
+  });
 
-  
 try{
-    sequelize.authenticate()
-    console.log('Connection Succefully')    
+    sequelize.authenticate();
+    console.log('Connection Succefully');    
 }
 catch(err)
 {
-    console.log('Connection error')
+    console.log('Connection error');
 }
 
-
-module.exports = sequelize
-
+module.exports = sequelize;

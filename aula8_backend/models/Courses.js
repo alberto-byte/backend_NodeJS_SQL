@@ -1,8 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize');
+const db = require('../database/conn');
 
-const db = require('../database/conn')
-
-const TravelPackage = db.define('TravelPackage', {
+const Courses = db.define('Courses', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -30,4 +29,4 @@ const TravelPackage = db.define('TravelPackage', {
   },
 })
   
-module.exports = TravelPackage
+module.exports = Courses;

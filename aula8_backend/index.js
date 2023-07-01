@@ -1,14 +1,12 @@
-const express = require('express')
-const conn = require('./database/conn')
+const express = require('express');
+const conn = require('./database/conn');
+const jwt = require('jsonwebtoken');
+const app = express();
 
-const jwt = require('jsonwebtoken')
-
-const app = express()
-
-const travelpackageRoutes = require('./routes/travelpackageRoutes')
-const enrollmentsRoutes = require('./routes/enrollmentsRoutes')
-const usersRoutes = require('./routes/usersRoutes')
-const authenticationRoutes = require('./routes/authRoutes')
+const travelpackageRoutes = require('./routes/travelpackageRoutes');
+const enrollmentsRoutes = require('./routes/enrollmentsRoutes');
+const usersRoutes = require('./routes/usersRoutes');
+const authenticationRoutes = require('./routes/authRoutes');
 
 app.use(
     express.urlencoded({
@@ -16,7 +14,6 @@ app.use(
     })
 )
 app.use(express.json())
-
 
 function VerifyJWT(req, res, next){
     const token = req.body.token || req.query.token
@@ -34,13 +31,12 @@ function VerifyJWT(req, res, next){
     })
 }
 
+app.use('/travelpackage', VerifyJWT,travelpackageRoutes);
+app.use('/enrollments', VerifyJWT,enrollmentsRoutes);
+app.use('/users', VerifyJWT, usersRoutes);
 
-app.use('/travelpackage', VerifyJWT,travelpackageRoutes)
-app.use('/enrollments', VerifyJWT,enrollmentsRoutes)
-app.use('/users', VerifyJWT, usersRoutes)
-
-app.use('/login', authenticationRoutes)
-app.use('/logout', authenticationRoutes)
+app.use('/login', authenticationRoutes);
+app.use('/logout', authenticationRoutes);
 
 conn.sync({ force: false }) 
   .then(() => {
@@ -52,6 +48,3 @@ conn.sync({ force: false })
   .catch((error) => {
     console.error('Error sync:', error)
   })
-
-
-

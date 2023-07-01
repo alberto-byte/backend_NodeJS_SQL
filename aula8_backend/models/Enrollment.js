@@ -1,9 +1,5 @@
-const { Sequelize, DataTypes } = require('sequelize')
-
-const db = require('../database/conn')
-
-const User = require('../models/User')
-const TravelPackage = require('../models/TravelPackage')
+const { Sequelize, DataTypes } = require('sequelize');
+const db = require('../database/conn');
 
 const Enrollment = db.define('Enrollment', {
   id: {
@@ -11,19 +7,22 @@ const Enrollment = db.define('Enrollment', {
     autoIncrement: true,
     primaryKey: true,
   },
-  
-  userId: {
+  classes: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  travelPackageId: {
+  students: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  }
-  
+  },
+  Enrollment_Date: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+  price: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
 })
-
-Enrollment.belongsTo(User)
-Enrollment.belongsTo(TravelPackage)
-
-module.exports = Enrollment
+  
+module.exports = Enrollment;

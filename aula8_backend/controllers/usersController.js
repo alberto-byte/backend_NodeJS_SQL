@@ -1,18 +1,18 @@
-const Users = require('../models/User')
+const Users = require('../models/User');
 
 const getUsers = async(req,res)=>{
     try {
-        const users = await Users.findAll()
-        res.json(users)
+        const users = await Users.findAll();
+        res.json(users);
       } catch (error) {
-        console.error(error)
-        res.status(500).send('Server Error')
-      }
-}
+        console.error(error);
+        res.status(500).send('Server Error');
+      };
+};
 
 const addUser = async(req,res)=>{
   try {
-    const { username, password, name, email, age, phoneNumber, country } = req.body
+    const { username, password, name, email, age, phoneNumber, country } = req.body;
     const user = await Users.create({
       username,
       password,
@@ -22,11 +22,11 @@ const addUser = async(req,res)=>{
       phoneNumber,
       country
     })
-    res.json(user)
+    res.json(user);
   } catch (error) {
-    console.error(error)
-    res.status(500).send('Server Error')
+    console.error(error);
+    res.status(500).send('Server Error');
   }
 }
 
-module.exports={getUsers,addUser}
+module.exports={getUsers,addUser};
