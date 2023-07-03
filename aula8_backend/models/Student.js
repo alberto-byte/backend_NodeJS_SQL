@@ -2,8 +2,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database/conn');
 
-const Students = require('./Student');
-const Students = db.define('Students', {
+const Students = db.define('Student', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -48,8 +47,5 @@ const Students = db.define('Students', {
     allowNull: false,
   },
 })
-
-Students.belongsTo(User);
-Students.belongsTo(TravelPackage);
 
 module.exports = Students;

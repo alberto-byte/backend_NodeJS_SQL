@@ -29,7 +29,7 @@ const Classes = db.define('Classes', {
   },
 })
 
-Enrollment.belongsTo(Instructor);
-Enrollment.belongsTo(Course);
+Classes.belongsTo(Instructor);
+Classes.belongsTo(Course);
   
 module.exports = Classes;
