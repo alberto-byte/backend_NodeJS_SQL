@@ -51,8 +51,10 @@ const Students = db.define('Student', {
 })
 
 Students.beforeCreate(async (student) => {    
-  const passwordHash = await bcrypt.hash(student.password, 10)  
-  student.password = passwordHash
+  console.log(student.password);
+  const passwordHash = await bcrypt.hash(student.password, 10);
+  console.log(passwordHash);
+  student.password = passwordHash;
 })
 
 module.exports = Students;

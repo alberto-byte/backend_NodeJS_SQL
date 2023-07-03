@@ -7,12 +7,14 @@ class AuthenticationController {
         const { username, password } = req.body;
           
         const student = await Students.findOne({ where: { username } });
-        
+        console.log("student: ", student)
+
         if (!student) {
           return res.status(401).json({ message: 'Invalid student' });
         }
           
         const compareResult = await bcrypt.compare(password, student.password);
+        console.log("compareResult: ", compareResult)
 
         if (!compareResult) {
           return res.status(401).json({ message: 'Invalid password' });
