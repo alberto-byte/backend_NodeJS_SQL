@@ -24,11 +24,11 @@ function VerifyJWT(req, res, next){
         return res.status(403).json({auth:false, message: 'No token provided'})
     }
 
-    jwt.verify(token, 'secret_key', (err, user)=>{
+    jwt.verify(token, 'secret_key', (err, student)=>{
       if(err){
         return res.status(403),json({message: 'Invalid Token'})
       }
-      req.user = user
+      req.student = student
       next()
     })
 }
