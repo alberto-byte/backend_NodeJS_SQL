@@ -1,3 +1,4 @@
+// Tabela de Cursos
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database/conn');
 
@@ -7,24 +8,24 @@ const Courses = db.define('Courses', {
     autoIncrement: true,
     primaryKey: true,
   },
-  description: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  date: {
+  requirement: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  start_date: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+  end_date: {
     type: DataTypes.DATE,
     allowNull: false,
   },
   price: {
     type: DataTypes.FLOAT,
-    allowNull: false,
-  },
-  maxParticipants: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  remainingVacancies: {
-    type: DataTypes.INTEGER,
     allowNull: false,
   },
 })

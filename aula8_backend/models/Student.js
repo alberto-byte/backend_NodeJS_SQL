@@ -1,10 +1,9 @@
-const { Sequelize, DataTypes } = require('sequelize')
+// Tabela de Studantes
+const { Sequelize, DataTypes } = require('sequelize');
+const db = require('../database/conn');
 
-const db = require('../database/conn')
-
-const bcrypt = require('bcrypt')
-
-const User = db.define('User', {
+const Students = require('./Student');
+const Students = db.define('Students', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -18,6 +17,11 @@ const User = db.define('User', {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  cpf: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
   },
   name: {
     type: DataTypes.STRING,
@@ -45,9 +49,7 @@ const User = db.define('User', {
   },
 })
 
-User.beforeCreate(async (user) => {    
-  const passwordHash = await bcrypt.hash(user.password, 10)  
-  user.password = passwordHash
-})
+Students.belongsTo(User);
+Students.belongsTo(TravelPackage);
 
-module.exports = User
+module.exports = Students;

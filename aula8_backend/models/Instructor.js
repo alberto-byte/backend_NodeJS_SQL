@@ -1,6 +1,6 @@
+// Tabela de Instrutores
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database/conn');
-// const User = require('./User');
 
 const Instructors = db.define('Instructors', {
   id: {
@@ -26,7 +26,5 @@ const Instructors = db.define('Instructors', {
   },
 })
 
-Enrollment.belongsTo(User);
-// Enrollment.belongsTo(TravelPackage);
 
 module.exports = Instructors;

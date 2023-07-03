@@ -1,5 +1,9 @@
+// Tabela de Inscricao / matricula
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database/conn');
+
+const Classes = require('./Classes');
+const Student = require('./Student');
 
 const Enrollment = db.define('Enrollment', {
   id: {
@@ -7,22 +11,33 @@ const Enrollment = db.define('Enrollment', {
     autoIncrement: true,
     primaryKey: true,
   },
-  classes: {
+  classeId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  students: {
+  studentId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  Enrollment_Date: {
+  enrollment_Date: {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  price: {
-    type: DataTypes.FLOAT,
+  enrollment_available: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
+  maxStudents: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  remainingVacancies: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 })
+
+Enrollment.belongsTo(Classes);
+Enrollment.belongsTo(Student);
   
 module.exports = Enrollment;

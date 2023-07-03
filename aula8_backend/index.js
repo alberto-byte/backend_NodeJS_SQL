@@ -3,9 +3,11 @@ const conn = require('./database/conn');
 const jwt = require('jsonwebtoken');
 const app = express();
 
-const travelpackageRoutes = require('./routes/travelpackageRoutes');
+const coursesRoutes = require('./routes/coursesRoutes');
 const enrollmentsRoutes = require('./routes/enrollmentsRoutes');
-const usersRoutes = require('./routes/usersRoutes');
+const instructorsRoutes = require('./routes/instructorsRoutes');
+const studentsRoutes = require('./routes/studentsRoutes');
+const classesRoutes = require('./routes/classesRoutes');
 const authenticationRoutes = require('./routes/authRoutes');
 
 app.use(
@@ -31,9 +33,11 @@ function VerifyJWT(req, res, next){
     })
 }
 
-app.use('/travelpackage', VerifyJWT,travelpackageRoutes);
+app.use('/courses', VerifyJWT,coursesRoutes);
 app.use('/enrollments', VerifyJWT,enrollmentsRoutes);
-app.use('/users', VerifyJWT, usersRoutes);
+app.use('/instructors', VerifyJWT, instructorsRoutes);
+app.use('/students', VerifyJWT, studentsRoutes);
+app.use('/classes', VerifyJWT, classesRoutes);
 
 app.use('/login', authenticationRoutes);
 app.use('/logout', authenticationRoutes);
