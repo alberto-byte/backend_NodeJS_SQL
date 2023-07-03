@@ -1,4 +1,3 @@
-// const  = require('../models/Enrollment');
 const Instructors = require('../models/Instructor');
 const Courses = require('../models/Course');
 const Classes = require('../models/Classes');
@@ -23,18 +22,19 @@ const addClasse = async (req, res)=>{
       CourseId
     })
 
-    // const travelPackage = await TravelPackage.findByPk(travelPackageId)
+    const instructor = await Instructors.findByPk(InstructorId)
 
-    // if (!travelPackage) {
-    //   return res.status(404).json({ message: 'TravelPackage not found' })
-    // }
+    if (!instructor) {
+      return res.status(404).json({ message: 'Instructor not found' })
+    }
 
-    // if (travelPackage.remainingVacancies === 0) {
-    //   return res.status(400).json({ message: 'No remaining vacancy' })
-    // }
+    const courses = await Courses.findByPk(CourseId)
 
-    // travelPackage.decrement('remainingVacancies')
-    // await travelPackage.save()
+    if (!courses) {
+      return res.status(404).json({ message: 'Course not found' })
+    }
+
+    await travelPackage.save()
 
     res.json(classes)
   } catch (error) {
